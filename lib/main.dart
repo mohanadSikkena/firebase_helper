@@ -3,15 +3,19 @@ import 'dart:developer';
 
 import 'package:app_links/app_links.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_helper/models/controllers/app/app_cubit.dart';
-import 'package:firebase_helper/models/router/router.dart';
-import 'package:firebase_helper/shared/network/local/cache_helper.dart';
+import 'package:firebase_helper/repositories/notifications/notification_repository.dart';
+import 'package:firebase_helper/router/router.dart';
+import 'package:firebase_helper/core/cache/cache_helper.dart';
+import 'package:firebase_helper/core/network/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'controllers/app/app_cubit.dart';
+import 'core/observers/bloc_observer/bloc_observer.dart';
 import 'firebase_options.dart';
-import 'models/observers/bloc_observer.dart';
+
+
 
 
 void main() async {
@@ -20,11 +24,16 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
+
   await Future.wait([
     Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    ), CacheHelper.init()
+      options: DefaultFirebaseOptions.currentPlatform,),
+    CacheHelper.init(),
+    DioHelper.init(),
   ]);
+  FirebaseNotificationRepository.initializeFirebaseMessagingOptions();
+
+
 
   Bloc.observer = MyBlocObserver();
   log('app executed in ${stopwatch.elapsed}');
@@ -55,6 +64,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    FirebaseNotificationRepository.askForPermission();
     _initDeepLinks();
     super.initState();
   }
@@ -77,7 +87,7 @@ class _MyAppState extends State<MyApp> {
             //     lazy: false,
             //     create: (context)=>UserCubit()),
             BlocProvider(
-                lazy: false,
+                lazy: true,
                 create: (context)=>AppCubit()),
 
           ],

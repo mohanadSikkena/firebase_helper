@@ -2,13 +2,6 @@
 class Assets {
   Assets._();
 
-  static const String authenticationIntroduction = 'lib/modules/authentication/introduction.dart';
-  static const String authenticationLogin = 'lib/modules/authentication/login.dart';
-  static const String authenticationSignup = 'lib/modules/authentication/signup.dart';
-  static const String blocObserverBlocObserver = 'lib/models/bloc_observer/bloc_observer.dart';
-  static const String generatedAssets = 'lib/generated/assets.dart';
-  static const String libMain = 'lib/main.dart';
-  static const String stylesColors = 'lib/shared/styles/colors.dart';
-  static const String widgetsCustomTextfield = 'lib/shared/widgets/custom_textfield.dart';
+  static const String defaultProfileImage= 'Assets/images/default_profile/default_profile_image.png';
 
 }
