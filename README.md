@@ -1,12 +1,12 @@
 # firebase_helper
 
-A new Flutter project.
+This project provides a set of helper functions for interacting with Firebase in your Flutter applications
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+* **Authentication:** Easy-to-use functions for user signup, login, logout, and password management.
+* **Firestore:** Simplified methods for reading, writing, and querying data in Firestore.
+* **Firestore Streams:** Convenient wrappers for listening to real-time updates from Firestore.
+* **Notifications:** Helper functions for sending and receiving Firebase Cloud Messaging (FCM) notifications.
+* **Storage:**  Simplified API for uploading, downloading, and managing files in Firebase Storage.
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
